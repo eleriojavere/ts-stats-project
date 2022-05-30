@@ -1,12 +1,13 @@
 import fs from 'fs';
-import { MatchResult } from './matchResult';
-import { dateStringToDate } from './utils';
 
-type MatchData = [Date, string, string, Number, Number, MatchResult, string];
+// General type naming convention is naming it capital T only
+export abstract class CsvFileReader<T> {
+  data: T[] = [];
 
-export class CsvFileReader {
-  data: MatchData[] = [];
   constructor(public fileName: string) {}
+
+  abstract mapRow(row: string[]): T;
+
   read(): void {
     this.data = fs
       .readFileSync(this.fileName, {
@@ -16,16 +17,6 @@ export class CsvFileReader {
       .map((row: string): string[] => {
         return row.split(',');
       })
-      .map((row: string[]): MatchData => {
-        return [
-          dateStringToDate(row[0]),
-          row[1],
-          row[2],
-          parseInt(row[3]),
-          parseInt(row[4]),
-          row[5] as MatchResult,
-          row[6],
-        ];
-      });
+      .map(this.mapRow);
   }
 }
