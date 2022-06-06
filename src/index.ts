@@ -17,3 +17,5 @@ const consoleReport = new ConsoleReport();
 
 const summary = new Summary(winsAnalysis, new HtmlReport());
 summary.buildAndPrintReport(matchReader.matches);
+
+Summary.winsAnalysisWithHtmlReport('manu');

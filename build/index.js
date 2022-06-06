@@ -15,3 +15,4 @@ const winsAnalysis = new WinsAnalysis_1.WinsAnalyzis('Manchester United');
 const consoleReport = new ConsoleReport_1.ConsoleReport();
 const summary = new Summary_1.Summary(winsAnalysis, new HtmlReport_1.HtmlReport());
 summary.buildAndPrintReport(matchReader.matches);
+Summary_1.Summary.winsAnalysisWithHtmlReport('manu');
