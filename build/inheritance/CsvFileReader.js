@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CsvFileReader = void 0;
 const fs_1 = __importDefault(require("fs"));
+// General type naming convention is naming it capital T only
 class CsvFileReader {
     constructor(fileName) {
         this.fileName = fileName;
@@ -18,7 +19,8 @@ class CsvFileReader {
             .split('\n')
             .map((row) => {
             return row.split(',');
-        });
+        })
+            .map(this.mapRow);
     }
 }
 exports.CsvFileReader = CsvFileReader;
